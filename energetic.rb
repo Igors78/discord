@@ -35,9 +35,8 @@ end
 bot.command :weather do |event|
   url = 'https://api.openweathermap.org/data/2.5/weather?q=Wolfsburg&lang=ru&appid=ec8a036c5345c0a48bf07fd7e218878c'
   response = HTTParty.get(url)
-  event << response.name
-  event << response.country
-  event << response.value
+  response.parsed_response
+  event << response
 end
 
 bot.command(:joke, description: 'Похабная шутка...') do |event|
