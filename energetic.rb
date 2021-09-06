@@ -13,6 +13,7 @@ bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'],
 bot.mention { |event| event.respond 'Кто-то звал меня на помощь? Попробуй !help' }
 
 bot.command :help do |event|
+  event << '!weather = Погода в доме'
   event << '!joke = Похабная шутка'
   event << '!soft = Просто шутка'
   event << '!lyrics = Стишок'
@@ -29,6 +30,12 @@ bot.command :help do |event|
   event << '!insult = Оскорби меня!'
 
   # Here we don't have to worry about the return value because the `event << line` statement automatically returns nil.
+end
+
+bot.command :weather do |event|
+  url = 'api.openweathermap.org/data/2.5/weather?q=Wolfsburg&lang=ru&appid=ec8a036c5345c0a48bf07fd7e218878c'
+  response = HTTParty.get(url)
+  event << response.body.split('{"content":').last.chomp('}')
 end
 
 bot.command(:joke, description: 'Похабная шутка...') do |event|
