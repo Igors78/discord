@@ -97,7 +97,7 @@ bot.command :insult do |event|
 end
 
 bot.message(with_text: 'help') do |event|
-  event.respond 'Бог поможет!'
+  event.respond 'Научи меня, и Я помогу!'
 end
 
 bot.message(with_text: 'help!') do |event|
