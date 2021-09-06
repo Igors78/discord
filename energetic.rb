@@ -12,7 +12,7 @@ bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'],
 
 bot.mention { |event| event.respond 'Кто-то звал меня на помощь? Попробуй !help' }
 
-bot.command :joke do |event|
+bot.command(:joke, description: 'Похабная шутка...') do |event|
   url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=11'
   response = HTTParty.get(url)
   event << response.body.split('{"content":').last.chomp('}')
