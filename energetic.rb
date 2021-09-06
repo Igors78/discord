@@ -12,6 +12,25 @@ bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'],
 
 bot.mention { |event| event.respond 'Кто-то звал меня на помощь? Попробуй !help' }
 
+bot.command :help do |event|
+  event << '!joke = Похабная шутка'
+  event << '!soft = Просто шутка'
+  event << '!lyrics = Стишок'
+  event << '!apho = Афоризм/История'
+  event << '!quote = История/Цитата'
+  event << '!tost = Тост/Здравица'
+  event << '!status = (ДЕ)Мотиватор'
+  event << '!oldstory = Похабная Афоризм/История'
+  event << '!oldlyrics = Похабный Стишок'
+  event << '!oldapho = Похабная История'
+  event << '!oldcyto = Похабная Цитата'
+  event << '!oldtost = Похабная Тост/Здравица'
+  event << '!oldstat = Похабный (ДЕ)Мотиватор'
+  event << '!insult = Оскорби меня!'
+
+  # Here we don't have to worry about the return value because the `event << line` statement automatically returns nil.
+end
+
 bot.command(:joke, description: 'Похабная шутка...') do |event|
   url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=11'
   response = HTTParty.get(url)
