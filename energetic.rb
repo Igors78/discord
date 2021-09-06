@@ -3,14 +3,89 @@
 
 require 'discordrb'
 require 'httparty'
+require 'dotenv'
 
-bot = Discordrb::Commands::CommandBot.new token: 'ODgzNjQ0NjE3MTMwNjQ3NTYy.YTM8Lg.ZVuWbG2o1T2jgQyO5KUiwlSqrII',
+Dotenv.load
+
+bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'],
                                           prefix: '!'
 
 bot.mention { |event| event.respond 'Кто-то звал меня на помощь? Попробуй !help' }
 
 bot.command :joke do |event|
   url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=11'
+  response = HTTParty.get(url)
+  event << response.body.split('{"content":').last.chomp('}')
+end
+
+bot.command :soft do |event|
+  url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=1'
+  response = HTTParty.get(url)
+  event << response.body.split('{"content":').last.chomp('}')
+end
+
+bot.command :lyrics do |event|
+  url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=3'
+  response = HTTParty.get(url)
+  event << response.body.split('{"content":').last.chomp('}')
+end
+
+bot.command :apho do |event|
+  url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=4'
+  response = HTTParty.get(url)
+  event << response.body.split('{"content":').last.chomp('}')
+end
+
+bot.command :quote do |event|
+  url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=5'
+  response = HTTParty.get(url)
+  event << response.body.split('{"content":').last.chomp('}')
+end
+
+bot.command :tost do |event|
+  url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=6'
+  response = HTTParty.get(url)
+  event << response.body.split('{"content":').last.chomp('}')
+end
+
+bot.command :status do |event|
+  url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=8'
+  response = HTTParty.get(url)
+  event << response.body.split('{"content":').last.chomp('}')
+end
+
+bot.command :oldstory do |event|
+  url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=12'
+  response = HTTParty.get(url)
+  event << response.body.split('{"content":').last.chomp('}')
+end
+
+bot.command :oldlyrics do |event|
+  url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=13'
+  response = HTTParty.get(url)
+  event << response.body.split('{"content":').last.chomp('}')
+end
+
+bot.command :oldapho do |event|
+  url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=14'
+  response = HTTParty.get(url)
+  event << response.body.split('{"content":').last.chomp('}')
+end
+
+bot.command :oldcyto do |event|
+  url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=15'
+  response = HTTParty.get(url)
+  event << response.body.split('{"content":').last.chomp('}')
+end
+
+bot.command :oldtost do |event|
+  url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=16'
+  response = HTTParty.get(url)
+  event << response.body.split('{"content":').last.chomp('}')
+end
+
+bot.command :oldstat do |event|
+  url = 'http://rzhunemogu.ru/RandJSON.aspx?CType=18'
   response = HTTParty.get(url)
   event << response.body.split('{"content":').last.chomp('}')
 end
