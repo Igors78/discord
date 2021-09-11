@@ -14,6 +14,7 @@ bot = Discordrb::Commands::CommandBot.new token: ENV['TOKEN'],
 bot.mention { |event| event.respond 'Кто-то звал меня на помощь? Попробуй !help' }
 
 bot.command :help do |event|
+  event << '!dayquote = Цитата дня'
   event << '!weather = Погода в доме'
   event << '!joke = Похабная шутка'
   event << '!soft = Просто шутка'
@@ -117,6 +118,12 @@ end
 
 bot.command :insult do |event|
   url = 'https://evilinsult.com/generate_insult.php?lang=ru&type=text'
+  response = HTTParty.get(url)
+  event << response.parsed_response
+end
+
+bot.command :dayquote do |event|
+  url = 'https://api.forismatic.com/api/1.0/get?method=getQuote&format=text&lang=ru'
   response = HTTParty.get(url)
   event << response.parsed_response
 end
