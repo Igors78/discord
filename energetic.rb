@@ -117,7 +117,7 @@ bot.command :oldstat do |event|
 end
 
 bot.command :insult do |event|
-  url = 'https://evilinsult.com/generate_insult.php?lang=ru&type=text'
+  url = 'https://evilinsult.com/generate_insult.php?lang=en&type=text'
   response = HTTParty.get(url)
   event << response.parsed_response
 end
